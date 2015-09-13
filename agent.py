@@ -58,12 +58,8 @@ class IdaStarSearchAgent(SearchAgent):
         # we have arrived at the beginning again
         if current_cell == self.starting_pos and k == len(adjlist):
             print "* * * * * * *\ndepth guess of %i failed, returned to begininng\ncurrent depth is %i\nnumber of visited nodes was %i" % (self.depth_guess, self.current_depth, len(self.visited))
-
+            get_environment().cleanup()
             self.visited = set([])
-            #self.parents = {}
-            #self.backpointers = {}
-            #self.number_moves = 0
-
             self.depth_guess += 1
             self.current_depth = 0
             next_cell = self.lowest_cost_adj_list(adjlist, k)
