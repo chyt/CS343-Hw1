@@ -1,0 +1,9 @@
+IDA* Implementation Report
+
+We based our IDA* implementation off of the depth first search code originally provided in Maze/agent.py. From there, we made two major modifications, in order to implement heuristic search and iterative deepening. 
+
+We created a new method, called “lowest_cost_adj_list”, which is used to determine the lowest cost path from cells adjacent to the current one. It loops through all adjacent cells to determine the one with the lowest cost, then sets the “next_cell” as that cell.
+
+Iterative deepening was implemented by creating a “depth_guess” variable, which sets the maximum depth level that the program searches to. Once this level is reached, the program will backtrack and explore all possible nodes until it is once again at the initial position. If no solution was found at the specified depth level, the depth_guess will be increased by 1, and the search will begin again, in order to explore new nodes. This process will be repeated until a solution is found. 
+
+In Constants.py, we increased the MAX_STEPS variable in order to prevent the program from ending unexpectedly, because multiple iterations are potentially required.

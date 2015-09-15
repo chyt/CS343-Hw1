@@ -58,6 +58,7 @@ class IdaStarSearchAgent(SearchAgent):
         # we have arrived at the beginning again
         if current_cell == self.starting_pos and k == len(adjlist):
             print "* * * * * * *\ndepth guess of %i failed, returned to begininng\ncurrent depth is %i\nnumber of visited nodes was %i" % (self.depth_guess, self.current_depth, len(self.visited))
+            # clear the maze and start over, incrementing the depth of the search
             get_environment().cleanup()
             self.visited = set([])
             self.depth_guess += 1
@@ -86,6 +87,7 @@ class IdaStarSearchAgent(SearchAgent):
         self.number_moves += 1
         return v
 
+    # find the lowest cost adjacent node, based on the given heuristic
     def lowest_cost_adj_list(self, adjlist, k):
         lowest_cost = sys.maxint
         lowest_cell = 0
@@ -124,7 +126,6 @@ class IdaStarSearchAgent(SearchAgent):
     def end(self, time, reward):
         print "Total number of moves: %i" % self.number_moves
         print "Final reward: %f, cumulative: %f" % (reward[0], self.fitness[0])
-        print "resetting"
         self.reset()
         return True
 
